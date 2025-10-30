@@ -1,4 +1,20 @@
-# Welcome to your Expo app 👋
+NAMA : DIMAS DWI RIANTO
+NPM : 623C0004
+
+SCREENSHOT
+
+### Halaman Home
+
+<img src ="assets/images/home.jpeg" alt="Halaman Home" width="300">
+
+### Halaman Projects
+
+<img src ="assets/images/projects.jpeg" alt="Halaman Projects" width="300">
+
+### Halaman Contacts
+
+<img src ="assets/images/contacts.jpeg" alt="Halaman Contacts" width="300">
+A# Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
