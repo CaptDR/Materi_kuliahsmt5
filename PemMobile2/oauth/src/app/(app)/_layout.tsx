@@ -1,32 +1,29 @@
-import { View, Text } from "react-native";
+import { View, Text, ActivityIndicator } from "react-native";
 import React from "react";
-import { Tabs } from "expo-router";
-import AntDesign from "@expo/vector-icons/AntDesign";
+import { Stack } from "expo-router";
+import { useAuth } from "@clerk/clerk-expo";
 
 const Layout = () => {
+  const { isLoaded, isSignedIn } = useAuth();
+
+  if (!isLoaded) {
+    return (
+      <View className="flex-1 items-center justify-center">
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
+
   return (
-    <Tabs>
-      <Tabs.Screen
-        name="index"
-        options={{
-          headerShown: false,
-          title: "Home",
-          tabBarIcon: ({ color, size }) => (
-            <AntDesign name="home" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          title: "Profile",
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <AntDesign name="user" color={color} size={size} />
-          ),
-        }}
-      />
-    </Tabs>
+    <Stack>
+      <Stack.Protected guard={isSignedIn}>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      </Stack.Protected>
+      <Stack.Protected guard={!isSignedIn}>
+        <Stack.Screen name="sign-in" options={{ headerShown: false }} />
+        <Stack.Screen name="sign-up" options={{ headerShown: false }} />
+      </Stack.Protected>
+    </Stack>
   );
 };
 
